@@ -30,12 +30,8 @@ class App:
 
             # Updating widgets
             try:
-                widgets = [self.m2,self.m3]
-                for widget in widgets:
-                    if isinstance(widget,tk.Meter):
-                        widget['amountused'] = d['current']['temp_f']
-                    elif isinstance(widget,tk.Button):
-                        pass
+               widget = [self.m2,self.m3]
+               widget[0]['amountused'] = d['current']['temp_f']
             execpt:
                 pass
 
