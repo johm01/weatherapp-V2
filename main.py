@@ -29,9 +29,14 @@ class App:
             d = r.json()
 
             # Updating widgets
-            try: 
-                self.temp_gauge['amountused'] = d['current']['temp_f']
-            except:
+            try:
+                widgets = [self.m2,self.m3]
+                for widget in widgets:
+                    if isinstance(widget,tk.Meter):
+                        widget['amountused'] = d['current']['temp_f']
+                    elif isinstance(widget,tk.Button):
+                        pass
+            execpt:
                 pass
 
         except TypeError:
