@@ -15,7 +15,7 @@ class App:
         self.b1 = tk.Button(self.root,command=lambda :self.get_weather(self.e1.get()))
         self.b1.pack()
 
-        self.temp_gauge = tk.Meter(self.root)
+        self.temp_gauge = tk.Meter(self.root,amounttotal=110,amountused=20)
         self.temp_gauge.pack()
 
         self.root.mainloop()
@@ -25,8 +25,14 @@ class App:
         try:
             self.zip = zip 
             r = requests.get(key)
+            # Data from the request
             d = r.json()
-            print(d)
+
+            # Updating widgets
+            try: 
+                self.temp_gauge['amountused'] = d['current']['temp_f']
+            except:
+                pass
 
         except TypeError:
             print('Not a valid Zip code!')
