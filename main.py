@@ -21,7 +21,7 @@ class App:
         self.root.mainloop()
 
     def get_weather(self,zip):
-        key = f'http://api.weatherapi.com/v1/current.json?key=9882b06f04a14ed49fd02510222704&q={zip}&aqi=no'
+        key = f'http://api.weatherapi.com/v1/current.json?key=&q={zip}&aqi=no'
         try:
             self.zip = zip 
             r = requests.get(key)
