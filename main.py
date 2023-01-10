@@ -13,10 +13,14 @@ class App:
         # Meter Frame 
         self.f1 = tk.Frame(self.root,style='danger.TFrame')
         self.f1.place(x=150,y=150)
-        self.m2 = tk.Meter(self.f1,amounttotal=100,amountused=0,metersize=100,stepsize=10)
+        self.m2 = tk.Meter(self.f1,amounttotal=110,amountused=0,metersize=100,stepsize=10)
         self.m2.grid(column=1,row=1)
         self.m3 = tk.Meter(self.f1,amounttotal=100,amountused=0,metersize=100,stepsize=10)
         self.m3.grid(column=0,row=1)
+        self.m4 = tk.Meter(self.f1,amounttotal=55,amountused=0,metersize=100,stepsize=10)
+        self.m4.grid(column=0,row=2)
+        self.m5 = tk.Meter(self.f1,amounttotal=100,amountused=0,metersize=100,stepsize=10)
+        self.m5.grid(column=1,row=2)
         
         # Entry and Button frame
         self.f2 = tk.Frame(self.root)
@@ -28,12 +32,11 @@ class App:
 
         # Frame for location info and other info 
         self.f3 = tk.Frame(self.root)
-        self.f3.place(x=750,y=150)
-        self.l1 = tk.Label(self.f3,font=('',20))
+        self.f3.place(x=825,y=150)
+        self.l1 = tk.Label(self.f3,font=('Terminus (TTF)',20),style="success.TLabel")
         self.l1.pack()
-        self.l2 = tk.Label(self.f3,font=('',15))
+        self.l2 = tk.Label(self.f3,font=('Terminus (TTF)',15),style="success.TLabel")
         self.l2.pack()
-
         self.root.mainloop()
 
     def get_weather(self,zip):
@@ -45,14 +48,16 @@ class App:
         try:
             data = r.json()
             if data:
+                print(data)
                 current = data['current']
                 location = data['location']
                 try:
-                    widget = [self.m2,self.m3,self.l1,self.l2]
-                    widget[0]['amountused'] = int(current['temp_f'])
-                    widget[1]['amountused'] = current['humidity'] 
-                    widget[2]['text'] = location['name'] +', '+ location['region']
-                    widget[3]['text'] = 'Feels like ' + str(current['feelslike_f'])
+                    self.m2['amountused'] = int(current['temp_f'])
+                    self.m3['amountused'] = int(current['humidity'])
+                    self.m4['amountused'] = int(current['wind_mph'])
+                    self.m5['amountused'] = int(current['temp_c'])
+                    self.l1['text'] = location['name'] +', '+ location['region']
+                    self.l2['text'] = 'Feels like ' + str(current['feelslike_f'])
                 except:
                     print('Error: '+data['error']['code'])
         except:
