@@ -13,13 +13,13 @@ class App:
         # Meter Frame 
         self.f1 = tk.Frame(self.root)
         self.f1.place(x=150,y=150)
-        self.m2 = tk.Meter(self.f1,amounttotal=110,amountused=0,metersize=150,stepsize=10,subtext='Temp F')
+        self.m2 = tk.Meter(self.f1,amounttotal=110,amountused=0,metersize=150,stepsize=10,subtext='Temp F',textright='F')
         self.m2.grid(column=1,row=1)
         self.m3 = tk.Meter(self.f1,amounttotal=100,amountused=0,metersize=150,stepsize=10,subtext='Humidity',showtext=True)
         self.m3.grid(column=0,row=1)
-        self.m4 = tk.Meter(self.f1,amounttotal=100,amountused=0,metersize=150,stepsize=10,subtext='Wind Speed',showtext=True)
+        self.m4 = tk.Meter(self.f1,amounttotal=100,amountused=0,metersize=150,stepsize=10,subtext='Wind Speed',showtext=True,textright='Mph')
         self.m4.grid(column=0,row=2)
-        self.m5 = tk.Meter(self.f1,amounttotal=100,amountused=0,metersize=150,stepsize=10,subtext='Temp C')
+        self.m5 = tk.Meter(self.f1,amounttotal=100,amountused=0,metersize=150,stepsize=10,subtext='Temp C',textright='C')
         self.m5.grid(column=1,row=2)
         
         # Entry and Button frame
@@ -43,7 +43,7 @@ class App:
 
     def get_weather(self,zip):
         # Link for API call and API key 
-        key = f'http://api.weatherapi.com/v1/current.json?key=9882b06f04a14ed49fd02510222704&q={zip}&aqi=no'
+        key = f'http://api.weatherapi.com/v1/current.json?key=&q={zip}&aqi=no'
             
         # Making a request to the weather API
         try:
